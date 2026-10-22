@@ -59,3 +59,9 @@ dist-types/
 dist/
 .DS_Store
 
+node_modules/
+dist-types/
+dist/
+*.log
+.DS_Store
+

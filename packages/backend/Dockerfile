@@ -1,9 +1,9 @@
 FROM node:22-bookworm-slim AS build
 
 ENV PYTHON=/usr/bin/python3
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update && \
+ENV npm_config_nodedir=/usr/local
+ENV YARN_ENABLE_INLINE_BUILDS=true
+RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 g++ make libsqlite3-dev && \
     rm -rf /var/lib/apt/lists/*
 
@@ -18,9 +18,9 @@ RUN yarn build:backend
 FROM node:22-bookworm-slim
 
 ENV PYTHON=/usr/bin/python3
-RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-    --mount=type=cache,target=/var/lib/apt,sharing=locked \
-    apt-get update && \
+ENV npm_config_nodedir=/usr/local
+ENV YARN_ENABLE_INLINE_BUILDS=true
+RUN apt-get update && \
     apt-get install -y --no-install-recommends python3 g++ make libsqlite3-dev && \
     rm -rf /var/lib/apt/lists/*
 
@@ -33,8 +33,7 @@ COPY --from=build --chown=node:node /app/backstage.json ./
 COPY --from=build --chown=node:node /app/yarn.lock /app/package.json /app/packages/backend/dist/skeleton.tar.gz ./
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 
-RUN --mount=type=cache,target=/home/node/.yarn/berry/cache,sharing=locked,uid=1000 \
-    yarn workspaces focus --all --production
+RUN yarn workspaces focus --all --production
 
 COPY --from=build --chown=node:node /app/packages/backend/dist/bundle.tar.gz ./
 RUN tar xzf bundle.tar.gz && rm bundle.tar.gz
