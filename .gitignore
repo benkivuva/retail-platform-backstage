@@ -54,3 +54,8 @@ e2e-test-report/
 
 # Cache
 .cache/
+node_modules/
+dist-types/
+dist/
+.DS_Store
+
