@@ -10957,6 +10957,44 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@terasky/backstage-plugin-app-module-global-signin-page@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "@terasky/backstage-plugin-app-module-global-signin-page@npm:0.14.0"
+  dependencies:
+    "@backstage/core-components": "npm:^0.18.15"
+    "@backstage/core-plugin-api": "npm:^1.12.11"
+    "@backstage/frontend-plugin-api": "npm:^0.18.2"
+    "@backstage/plugin-app-react": "npm:^0.2.8"
+    "@terasky/backstage-plugin-spectrocloud-auth": "npm:^0.14.0"
+    "@terasky/backstage-plugin-vcfsso-auth": "npm:^0.11.0"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/6a9d49835033b85d03f2fb9655ebfe0ce814f2b8be41acb85afbbffef2efd93d54f3b15e3afe3a954d543de0a98be2929a11ca1ded516e251f7c2a00149647a1
+  languageName: node
+  linkType: hard
+
+"@terasky/backstage-plugin-spectrocloud-auth@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "@terasky/backstage-plugin-spectrocloud-auth@npm:0.14.0"
+  dependencies:
+    "@backstage/core-app-api": "npm:^1.20.6"
+    "@backstage/core-plugin-api": "npm:^1.12.11"
+    "@backstage/frontend-plugin-api": "npm:^0.18.2"
+  checksum: 10c0/92f10f828cb88d554fe76638eb33bbc2ec5ba3664ed9c44927407642409e86197247979ec75c2bc64a938e604aecd4ea8e0abe34b14e0919e1ca2a7c4377e0fd
+  languageName: node
+  linkType: hard
+
+"@terasky/backstage-plugin-vcfsso-auth@npm:^0.11.0":
+  version: 0.11.0
+  resolution: "@terasky/backstage-plugin-vcfsso-auth@npm:0.11.0"
+  dependencies:
+    "@backstage/core-app-api": "npm:^1.20.6"
+    "@backstage/core-plugin-api": "npm:^1.12.11"
+    "@backstage/frontend-plugin-api": "npm:^0.18.2"
+  checksum: 10c0/d4754bb2be045507dcf255df34bd3c9126b522effc3a946f4d1cb323320d55fcfebb7ccb4feb7a394f2b6f947b81578ef97c91bf1bcd3e7f62acfa729792d011
+  languageName: node
+  linkType: hard
+
 "@testing-library/dom@npm:^10.0.0":
   version: 10.4.2
   resolution: "@testing-library/dom@npm:10.4.2"
@@ -13571,6 +13609,7 @@ __metadata:
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"
     "@playwright/test": "npm:^1.32.3"
+    "@terasky/backstage-plugin-app-module-global-signin-page": "npm:^0.14.0"
     "@testing-library/dom": "npm:^9.0.0"
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^14.0.0"

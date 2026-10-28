@@ -1,26 +1,49 @@
 app:
-  # The public URL of your Backstage instance (Using your nip.io static IP)
-  baseUrl: http://backstage.34.136.31.203.nip.io
+  baseUrl: https://backstage.34.136.31.203.nip.io
 
 backend:
-  baseUrl: http://backstage.34.136.31.203.nip.io
+  baseUrl: https://backstage.34.136.31.203.nip.io
   listen:
     port: 7007
   
-  # Database connection using the Cloud SQL Postgres URL
+  csp:
+    upgrade-insecure-requests: false
+
   database:
     client: pg
-    connection:
-      $env: POSTGRES_URL
+    connection: ${POSTGRES_URL}
+    pool:
+      min: 1
+      max: 4
 
-  # Allow connections from the ingress
   cors:
-    origin: http://backstage.34.136.31.203.nip.io
+    origin: https://backstage.34.136.31.203.nip.io
 
 auth:
   environment: production
   providers:
+    guest: null
     github:
       production:
         clientId: ${AUTH_GITHUB_CLIENT_ID}
         clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
+        signIn:
+          resolvers:
+            - resolver: usernameMatchingUserEntityName
+
+catalog:
+  locations:
+    - type: url
+      target: https://github.com/benkivuva/RetailDataPlatform/blob/main/catalog-info.yaml
+    - type: url
+      target: https://github.com/benkivuva/retail-platform-infrastructure/blob/main/catalog-info.yaml
+    - type: url
+      target: https://github.com/benkivuva/retail-platform-gitops/blob/main/catalog-info.yaml
+
+signinPage:
+  enableGuestProvider: false
+  providers:
+    github:
+      enabled: true
+      title: GitHub
+      message: Sign in using your GitHub account
