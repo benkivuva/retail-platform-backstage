@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
 
+# THIS IS THE MISSING PIECE:
+permissions:
+  contents: read
+  id-token: write
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
