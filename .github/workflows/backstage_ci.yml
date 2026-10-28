@@ -1,0 +1,33 @@
+name: Backstage CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to GCP
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_CI_SA }}
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
+
+      - name: Build Backstage Image
+        run: |
+          docker build -f packages/backend/Dockerfile \
+            -t us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/backstage:${{ github.sha }} \
+            -t us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/backstage:main-latest \
+            .
+
+      - name: Push Backstage Image
+        run: |
+          docker push us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/backstage:${{ github.sha }}
+          docker push us-central1-docker.pkg.dev/retail-data-platform-511008/dev-retail-platform/backstage:main-latest
