@@ -47,3 +47,7 @@ signinPage:
       enabled: true
       title: GitHub
       message: Sign in using your GitHub account
+
+catalog:
+  rules:
+    - allow: [Component, System, API, Resource, Location, User, Group, Template]
