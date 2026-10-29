@@ -27,11 +27,10 @@ auth:
       production:
         clientId: ${AUTH_GITHUB_CLIENT_ID}
         clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
-        signIn:
-          resolvers:
-            - resolver: usernameMatchingUserEntityName
 
 catalog:
+  rules:
+    - allow: [Component, System, API, Resource, Location, User, Group, Template]
   locations:
     - type: url
       target: https://github.com/benkivuva/RetailDataPlatform/blob/main/catalog-info.yaml
@@ -39,15 +38,3 @@ catalog:
       target: https://github.com/benkivuva/retail-platform-infrastructure/blob/main/catalog-info.yaml
     - type: url
       target: https://github.com/benkivuva/retail-platform-gitops/blob/main/catalog-info.yaml
-
-signinPage:
-  enableGuestProvider: false
-  providers:
-    github:
-      enabled: true
-      title: GitHub
-      message: Sign in using your GitHub account
-
-catalog:
-  rules:
-    - allow: [Component, System, API, Resource, Location, User, Group, Template]
